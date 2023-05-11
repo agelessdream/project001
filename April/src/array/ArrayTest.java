@@ -7,5 +7,6 @@ public class ArrayTest {
         String s2="111";
         boolean b=(s1==s2);
         System.out.println(b);
+        System.out.println("修改测试");
     }
 }
