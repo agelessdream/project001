@@ -6,6 +6,6 @@ public class FinalTest {
         int a=1;
         System.out.println(a);
         //final a=2;
-        System.out.println(a);
+
     }
 }
