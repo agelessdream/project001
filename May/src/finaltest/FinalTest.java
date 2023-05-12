@@ -8,5 +8,6 @@ public class FinalTest {
         //final a=2;
         System.out.println(a);
         System.out.println(3333);
+        System.out.println(4444);
     }
 }
