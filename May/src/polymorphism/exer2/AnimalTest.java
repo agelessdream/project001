@@ -7,7 +7,9 @@ public class AnimalTest {
         AnimalTest test = new AnimalTest();
 
         test.adopt(new Animal());
-        test.adopt(new Dog());
+        Animal d1=new Dog();
+        System.out.println(d1.getClass());
+        test.adopt(d1);
         test.adopt(new Cat());
     }
 
