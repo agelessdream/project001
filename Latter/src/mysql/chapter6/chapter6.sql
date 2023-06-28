@@ -3,6 +3,10 @@ select e.last_name, e.department_id, d.department_name#,count(*)
 from employees e
          left join departments d on e.department_id = d.department_id;
 
+select *
+from employees e
+         left join departments d on e.department_id = d.department_id;
+
 # 2.查询90号部门员工的job_id和90号部门的location_id
 select job_id, location_id
 from employees
