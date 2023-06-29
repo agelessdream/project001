@@ -1,0 +1,1 @@
+select last_name,min(salary) salary from employees;
