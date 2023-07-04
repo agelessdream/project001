@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>抽奖</title>
+    <title>抽奖计时</title>
     <style>
         * {
             margin: 0;
@@ -79,7 +79,7 @@
             clearInterval(timer);//停止上面的方法
             btn.disabled = false;// 启用按钮
             alert("恭喜"+ lis[i-1].innerText+"同学");
-        }, Math.random()*1000+3000);
+        }, Math.random()*1000+3);
 
         var i=0;
         btn.disabled = true;// 禁用按钮
