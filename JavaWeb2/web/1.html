@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽奖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 240px;
+            margin: 30px auto;
+            border: 1px solid #ccc;
+        }
+
+        ul li {
+            width: 60px;
+            height: 60px;
+            line-height: 30px;
+            text-align: center;
+            margin: 10px;
+            float: left;
+            background-color: orange;
+            color: white;
+        }
+        /* 清浮动 */
+        ul:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        p {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .btn {
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border: none;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+<div id="box">
+    <ul>
+        <li>礼品1</li>
+        <li>礼品2</li>
+        <li>礼品3</li>
+        <li>礼品4</li>
+        <li>礼品5</li>
+        <li>礼品6</li>
+        <li>礼品7</li>
+        <li>礼品8</li>
+        <li>礼品9</li>
+    </ul>
+    <p><button title="按钮">开始抽奖</button></p>
+
+</div>
+
+</body>
+<script>
+    var btn = document.getElementsByTagName("button")[0];
+    btn.className = "btn";
+    var lis = document.getElementsByTagName("li");// 通过标签名 获取元素数组
+
+    btn.onclick = function () {// 为元素绑定单击事件
+        setTimeout(function (){
+            clearInterval(timer);//停止上面的方法
+            btn.disabled = false;// 启用按钮
+            alert("恭喜"+ lis[i-1].innerText+"同学");
+        }, Math.random()*1000+3000);
+
+        var i=0;
+        btn.disabled = true;// 禁用按钮
+        var timer = setInterval(function () {
+            i=(i===lis.length)?0:i;//若下标超过长度，则置为0
+            for(var k=0;k<lis.length;k++){//将所有位置的颜色重置
+                lis[k].style.backgroundColor = "orange";
+            }
+            lis[i].style.backgroundColor = "blue";
+            i+=1;
+        }, 100);
+    }
+</script>
+</html>
