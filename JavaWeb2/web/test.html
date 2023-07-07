@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ceshi</title>
+</head>
+<body>
+  <script>
+    //   ((x,y)=>console.log(x+y))(2,3);
+    //
+    //   (function f(x,y) {
+    //       console.log(x+y);
+    //   })(1,2)
+    //
+
+    function f2(a,b){
+        console.log(a>b);
+    }
+
+    f3=function (a,b){
+        console.log(a<b);
+    }
+    f2(5,7);
+    f3(5,7);
+    //
+    // for (let i=1; i<=5; i++) {
+    //   setTimeout(()=>console.log(i), i*1000 );
+    // }
+
+
+
+
+    // console.log(10)
+    // for (var i=1; i<=5; i++) {
+    //     var s=setTimeout((k)=>console.log(k), i*1000 ,i);
+    // }
+    // clearTimeout(s);
+    // console.log(100)
+
+
+
+
+
+
+    //
+    // for (var i=1; i<=5; i++) {
+    //   (function(j) {
+    //     setTimeout( function timer() {
+    //       console.log( j );
+    //     }, j*1000 );
+    //   })(i);
+    // }
+
+
+
+  </script>
+  <script>
+      // 生成中奖号码的方法
+      let getLotteryNum= function(){
+          return Math.trunc(Math.random()*10+1)
+      }
+      // 定义一个promise对象
+      let promise =new Promise(function(resolve,reject){
+          console.log("已经买了彩票,等待开奖")
+          setTimeout(function (){
+              let num =getLotteryNum();
+              if(num>= 5){
+                  resolve(`中奖了,号码为:${num}`)
+              }else{
+                  reject(`未中奖,号码为:${num}`)
+              }
+          },2000)
+      })
+      console.log('other code1111 invoked')
+      //  设置回调函数
+      promise.then(
+          function(message){
+              console.log(`两天后:${message}`)
+          },
+          function(error){
+              console.log(`两天后:${error}`)
+          }
+      )
+      console.log('other code2222 invoked')
+  </script>
+</body>
+</html>
