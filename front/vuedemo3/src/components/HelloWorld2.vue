@@ -1,8 +1,6 @@
-<script type="module">
+<script type="module" setup>
 //存储vue页面逻辑js代码
 import {ref} from 'vue'
-export default{
-  setup(){
     //非响应式数据: 修改后VUE不会更新DOM
     //响应式数据:   修改后VUE会更新DOM
     //VUE2中数据默认是响应式的
@@ -12,21 +10,15 @@ export default{
     //ref处理的响应式数据在js编码修改的时候需要通过.value操作
     //ref响应式数据在绑定到html上时不需要.value
 
-    let counter = ref(1)
+    let counter = ref(1);
     function increase(){
       // 通过.value修改响应式数据
-      counter.value++
+      counter.value++;
     }
     function decrease(){
-      counter.value--
+      counter.value--;
     }
-    return {
-      counter,
-      increase,
-      decrease
-    }
-  }
-}
+
 </script>
 <template>
   <div>
