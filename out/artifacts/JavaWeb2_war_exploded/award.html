@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽奖</title>
+    <style>
+		div{
+			width: 1000px;
+			height: 1000px;
+			position: absolute;
+			left: 30%;
+            top:30%;
+		}
+        th,td{
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table border="1px">
+            <tr>
+                <td></td><th>杨晨</th><th>李勇</th><td>讲台</td><td></td><th>伍飞</th><td></td>
+            </tr>
+            <tr>
+                <th>胡嘉伟</th><th>王文好</th><td></td><td rowspan="8">过道</td><th>何伟</th><th>潘杰</th><th>胡飞飞</th>
+            </tr>
+            <tr>
+                <th>宋艳辉</th><th>柴源</th><th>李扬</th><td></td><th>陆雪莲</th><th>颜龙强</th>
+            </tr>
+            <tr>
+                <td></td><th>顾磊</th><th>胡佳富</th><th>张瑞洋</th><th>李骁尧</th><th>耿嘉颢</th>
+            </tr>
+            <tr>
+                <th>曾旭松</th><th>徐济超</th><th>刘运</th><th>贾彦惠</th><th>王帅</th><th>陈旺</th>
+            </tr>
+            <tr>
+                <th>毛荣庆</th><th>杜志豪</th><th>王丰淇</th><th>高华松</th><th>方伟阳</th><th>殷红星</th>
+            </tr>
+            <tr>
+                <th>乔华宝</th><td></td><th>曾强</th><th>夏强</th><th>洪伟</th><th>陆家豪</th>
+            </tr>
+            <tr>
+                <th>李俍锐</th><th>袁立扬</th><th>张舜</th><th>李华伟</th><td></td><td></td>
+            </tr>
+            <tr>
+                <td></td><th>袁依同</th><td></td><th>李奇</th><th>孔铭飞</th><td></td>
+            </tr>
+            <tr><td colspan="7" align="center"><button title="按钮">开始抽奖</button></td></tr>
+            <tr><td colspan="7" align="center" id="i"></td></tr>
+        </table>
+    </div>
+
+    
+</body>
+    <script>//抽奖核心代码，简单的20行原生JavaScript
+        let btn = document.getElementsByTagName("button")[0];
+        let ths = document.getElementsByTagName("th");//获取th标签的元素数组
+        let count=0;//记录抽奖次数
+        let orangeIndex=0;//记录中奖人的下标
+        btn.onclick = function () {
+            count++;
+            btn.disabled = true;//滚动过程中，按钮无效
+            ths[orangeIndex].style.backgroundColor = "white";//将上一次中奖人的背景置白
+            let m=0;//m用于记录当前格子下标
+            let rollCount=Math.random()*ths.length*3+ths.length;//设置滚动次数的取值范围
+            if(count===2)rollCount=rollCount;
+            let base=0.0000026667*rollCount*rollCount-0.00113333*rollCount+1.145;
+            //滚动的间隔时间是个指数函数，且这个指数函数的底数由滚动次数计算而得
+
+            for(let i=0;i<rollCount+1;i++){//在此循环中实现橘色格子滚动
+                setTimeout(()=>{
+                    if(i<rollCount){
+                        document.getElementById("i").innerText="滚动次数:"+(i+1)+"　　"+"抽奖次数:"+count;//滚动次数实时刷新
+                        m=(m===ths.length)?0:m;//m一旦达到总人数，则置0，以达到“滚到最后一格之后，又返回第一格”的效果
+                        ths[m===0?ths.length-1:m-1].style.backgroundColor = "white";//将上一格置白。(若当前格下标为0，则上一格为最后一格)
+                        ths[m].style.backgroundColor = "orange";//将当前格置橘
+                        m++;
+                    }else {//由于setTimeout函数是异步的，所以以下3行代码可以放在for循环中，作为滚动结束时要执行的操作
+                        btn.disabled = false;//让按钮重新生效
+                        alert("恭喜"+ ths[m-1].innerText+"同学");//弹窗恭喜
+                        orangeIndex=m-1;//获取中奖人下标，以方便下一次抽奖开始时将此格置白
+                    }
+                },i*50+Math.pow(base,i)*80);//滚动的间隔时间，第一部分为固定的基础值，第二部分为指数函数
+            }
+        }
+    </script>
+</html>
